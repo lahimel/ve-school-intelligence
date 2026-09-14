@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VE School Intelligence</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #1d4ed8;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .brand p {
+      margin: 3px 0 0;
+      color: #6b7280;
+      font-size: 12px;
+    }
+
+    .user-area {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #userEmail {
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    #logoutButton {
+      border: none;
+      background: #dc2626;
+      color: white;
+      padding: 9px 16px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    main {
+      padding: 35px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .welcome {
+      margin-bottom: 28px;
+    }
+
+    .welcome h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+
+    .welcome p {
+      margin: 0;
+      color: #6b7280;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .kpi-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .kpi-label {
+      color: #6b7280;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .kpi-value {
+      font-size: 30px;
+      font-weight: bold;
+      color: #111827;
+    }
+
+    @media (max-width: 900px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 15px;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #userEmail {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="logo">VE</div>
+
+      <div>
+        <h1>VE School Intelligence</h1>
+        <p>Vocational Education School Intelligence Portal</p>
+      </div>
+    </div>
+
+    <div class="user-area">
+      <span id="userEmail"></span>
+      <button id="logoutButton">Logout</button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="welcome">
+      <h2>Dashboard</h2>
+      <p>Welcome to the Vocational Education School Intelligence Portal.</p>
+    </section>
+
+    <section class="kpi-grid">
+
+      <div class="kpi-card">
+        <div class="kpi-label">States</div>
+        <div class="kpi-value">15</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Schools</div>
+        <div class="kpi-value">22,350</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Sector Units</div>
+        <div class="kpi-value">37,528</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Districts</div>
+        <div class="kpi-value">441</div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script type="module">
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAxzBB6jZbmLXL9eOkL0zpAcadfPmyt70A",
+      authDomain: "ve-school-intelligence.firebaseapp.com",
+      projectId: "ve-school-intelligence",
+      storageBucket: "ve-school-intelligence.firebasestorage.app",
+      messagingSenderId: "313869218934",
+      appId: "1:313869218934:web:0be5b2758244ecd0f9db57",
+      measurementId: "G-WE58LR8Q9F"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+
+    onAuthStateChanged(auth, (user) => {
+
+      if (user) {
+
+        document.getElementById("userEmail").textContent =
+          user.email;
+
+      } else {
+
+        window.location.href = "index.html";
+
+      }
+
+    });
+
+
+    document
+      .getElementById("logoutButton")
+      .addEventListener("click", async () => {
+
+        await signOut(auth);
+
+        window.location.href = "index.html";
+
+      });
+
+  </script>
+
+</body>
+</html>
