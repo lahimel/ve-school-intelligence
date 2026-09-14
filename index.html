@@ -1,345 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>VE School Intelligence</title>
+  <title>VE School Intelligence</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #eef4ff, #f8fafc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1e293b;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #eef4ff 0%, #f8fafc 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f2937;
+    }
 
-        .login-container {
-            width: 100%;
-            max-width: 430px;
-            padding: 20px;
-        }
+    .login-container {
+      width: 100%;
+      max-width: 480px;
+      padding: 24px;
+    }
 
-        .login-card {
-            background: white;
-            border-radius: 18px;
-            padding: 42px 38px;
-            box-shadow: 0 15px 45px rgba(15, 23, 42, 0.12);
-            border: 1px solid #e2e8f0;
-        }
+    .login-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 42px 48px;
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.10);
+      border: 1px solid #e5e7eb;
+      text-align: center;
+    }
 
-        .logo {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 22px;
-            border-radius: 16px;
-            background: #2563eb;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            font-weight: bold;
-        }
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      border-radius: 18px;
+      background: #2563eb;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
 
-        h1 {
-            text-align: center;
-            font-size: 25px;
-            margin-bottom: 8px;
-            color: #0f172a;
-        }
+    h1 {
+      margin: 0;
+      color: #111827;
+      font-size: 30px;
+      line-height: 1.2;
+    }
 
-        .subtitle {
-            text-align: center;
-            color: #64748b;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 32px;
-        }
+    .subtitle {
+      margin: 12px auto 36px;
+      max-width: 300px;
+      color: #64748b;
+      font-size: 16px;
+      line-height: 1.5;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
 
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #334155;
-        }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #1f2937;
+      font-size: 15px;
+      font-weight: 600;
+    }
 
-        input {
-            width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #cbd5e1;
-            border-radius: 9px;
-            font-size: 15px;
-            outline: none;
-            transition: border 0.2s, box-shadow 0.2s;
-        }
+    input {
+      width: 100%;
+      padding: 15px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #111827;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
 
-        input:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-        }
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
 
-        .login-button {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 9px;
-            background: #2563eb;
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+    input::placeholder {
+      color: #94a3b8;
+    }
 
-        .login-button:hover {
-            background: #1d4ed8;
-        }
+    #loginButton {
+      width: 100%;
+      margin-top: 8px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
 
-        .login-button:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
-        }
+    #loginButton:hover:not(:disabled) {
+      background: #1d4ed8;
+    }
 
-        .message {
-            margin-top: 18px;
-            padding: 11px 13px;
-            border-radius: 8px;
-            font-size: 13px;
-            display: none;
-        }
+    #loginButton:active:not(:disabled) {
+      transform: translateY(1px);
+    }
 
-        .footer {
-            text-align: center;
-            margin-top: 28px;
-            font-size: 12px;
-            color: #94a3b8;
-        }
+    #loginButton:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
 
-        .security-note {
-            text-align: center;
-            margin-top: 18px;
-            font-size: 12px;
-            color: #64748b;
-        }
-    </style>
+    #message {
+      min-height: 24px;
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    #message.success {
+      color: #15803d;
+    }
+
+    #message.error {
+      color: #dc2626;
+    }
+
+    .security-note {
+      margin-top: 28px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 34px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    @media (max-width: 520px) {
+      .login-container {
+        padding: 16px;
+      }
+
+      .login-card {
+        padding: 34px 24px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="login-container">
+  <div class="login-container">
 
-        <div class="login-card">
+    <div class="login-card">
 
-            <div class="logo">
-                VE
-            </div>
+      <div class="logo">
+        VE
+      </div>
 
-            <h1>VE School Intelligence</h1>
+      <h1>
+        VE School Intelligence
+      </h1>
 
-            <p class="subtitle">
-                Vocational Education<br>
-                School Intelligence Portal
-            </p>
+      <div class="subtitle">
+        Vocational Education<br>
+        School Intelligence Portal
+      </div>
 
-            <form id="loginForm">
 
-                <div class="form-group">
-                    <label for="employeeCode">
-                        Employee Code
-                    </label>
+      <form id="loginForm">
 
-                    <input
-                        type="text"
-                        id="employeeCode"
-                        placeholder="Enter your employee code"
-                        autocomplete="username"
-                        required
-                    >
-                </div>
+        <div class="form-group">
+          <label for="employeeCode">
+            Employee Code
+          </label>
 
-                <div class="form-group">
-                    <label for="password">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
-                    >
-                </div>
-
-                <button
-                    type="submit"
-                    class="login-button"
-                    id="loginButton"
-                >
-                    Sign In
-                </button>
-
-                <div
-                    class="message"
-                    id="message"
-                ></div>
-
-            </form>
-
-            <div class="security-note">
-                🔒 Authorized employees only
-            </div>
-
-            <div class="footer">
-                Vocational Education Programme
-            </div>
-
+          <input
+            type="text"
+            id="employeeCode"
+            placeholder="Enter your employee code"
+            autocomplete="username"
+            required
+          >
         </div>
+
+
+        <div class="form-group">
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+
+        <button
+          type="submit"
+          id="loginButton"
+        >
+          Sign In
+        </button>
+
+      </form>
+
+
+      <div id="message"></div>
+
+
+      <div class="security-note">
+        🔒 Authorized employees only
+      </div>
+
+
+      <div class="footer">
+        Vocational Education Programme
+      </div>
 
     </div>
 
-    <!-- Firebase Authentication -->
-    <script type="module">
-
-        import { initializeApp }
-            from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-
-        import {
-            getAuth,
-            signInWithEmailAndPassword
-        }
-        from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+  </div>
 
 
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAxzBB6jZbmLXL9eOkOLzpAcadfPmyt70A",
-  authDomain: "ve-school-intelligence.firebaseapp.com",
-  projectId: "ve-school-intelligence",
-  storageBucket: "ve-school-intelligence.firebasestorage.app",
-  messagingSenderId: "313869218934",
-  appId: "1:313869218934:web:0be5b2758244ecd0f9db57",
-  measurementId: "G-WE58LR8Q9F"
-        };
+  <!-- Firebase Authentication -->
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      setPersistence,
+      browserLocalPersistence
+    } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+    // --------------------------------------------------
+    // Firebase Configuration
+    // --------------------------------------------------
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAxzBB6jZbmLXL9eOkL0zpAcadfPmyt70A",
+      authDomain: "ve-school-intelligence.firebaseapp.com",
+      projectId: "ve-school-intelligence",
+      storageBucket: "ve-school-intelligence.firebasestorage.app",
+      messagingSenderId: "313869218934",
+      appId: "1:313869218934:web:0be5b2758244ecd0f9db57",
+      measurementId: "G-WE58LR8Q9F"
+    };
 
 
-        // Login form
-        const loginForm = document.getElementById("loginForm");
-        const loginButton = document.getElementById("loginButton");
-        const message = document.getElementById("message");
+    // --------------------------------------------------
+    // Initialize Firebase
+    // --------------------------------------------------
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
 
 
-        loginForm.addEventListener("submit", async function(event) {
+    // --------------------------------------------------
+    // Get page elements
+    // --------------------------------------------------
 
-            event.preventDefault();
+    const loginForm =
+      document.getElementById("loginForm");
 
-            const employeeCode =
-                document.getElementById("employeeCode").value.trim();
+    const employeeCodeInput =
+      document.getElementById("employeeCode");
 
-            const password =
-                document.getElementById("password").value;
+    const passwordInput =
+      document.getElementById("password");
 
+    const loginButton =
+      document.getElementById("loginButton");
 
-            // Basic validation
-            if (!employeeCode || !password) {
-
-                showMessage(
-                    "Please enter your employee code and password.",
-                    "error"
-                );
-
-                return;
-            }
+    const message =
+      document.getElementById("message");
 
 
-            // Convert employee code into our Firebase login email
-            const email = employeeCode + "@ve-school.local";
+    // --------------------------------------------------
+    // Display login messages
+    // --------------------------------------------------
+
+    function showMessage(text, type) {
+
+      message.textContent = text;
+
+      message.className = type || "";
+
+    }
 
 
-            loginButton.disabled = true;
-            loginButton.textContent = "Signing in...";
+    // --------------------------------------------------
+    // Login
+    // --------------------------------------------------
+
+    loginForm.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
 
 
-            try {
+        const employeeCode =
+          employeeCodeInput.value.trim();
 
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
+        const password =
+          passwordInput.value;
 
 
-                showMessage(
-                    "Login successful. Opening dashboard...",
-                    "success"
-                );
+        if (!employeeCode || !password) {
 
+          showMessage(
+            "Please enter your employee code and password.",
+            "error"
+          );
 
-                // Open dashboard
-                setTimeout(function() {
-
-                    window.location.href = "dashboard.html";
-
-                }, 800);
-
-
-                    } catch (error) {
-
-            console.error("Firebase Authentication Error:", error);
-
-            showMessage(
-                "Firebase Error: " + error.code,
-                "error"
-            );
-
-            loginButton.disabled = false;
-            loginButton.textContent = "Sign In";
-
-        }
-        });
-
-
-        function showMessage(text, type) {
-
-            message.textContent = text;
-            message.style.display = "block";
-
-
-            if (type === "success") {
-
-                message.style.background = "#dcfce7";
-                message.style.color = "#166534";
-
-            } else {
-
-                message.style.background = "#fee2e2";
-                message.style.color = "#991b1b";
-
-            }
+          return;
 
         }
 
-    </script>
+
+        // Disable button while authentication is running
+
+        loginButton.disabled = true;
+
+        loginButton.textContent = "Signing in...";
+
+        showMessage("", "");
+
+
+        try {
+
+          // ------------------------------------------------
+          // Explicitly persist authentication locally
+          // ------------------------------------------------
+
+          await setPersistence(
+            auth,
+            browserLocalPersistence
+          );
+
+
+          // ------------------------------------------------
+          // Convert employee code into Firebase email
+          // ------------------------------------------------
+
+          const email =
+            employeeCode + "@ve-school.local";
+
+
+          // ------------------------------------------------
+          // Authenticate with Firebase
+          // ------------------------------------------------
+
+          await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+
+          // ------------------------------------------------
+          // Authentication successful
+          // ------------------------------------------------
+
+          showMessage(
+            "Login successful. Redirecting...",
+            "success"
+          );
+
+
+          // Give Firebase a moment to complete persistence
+          // before navigating to the dashboard.
+
+          setTimeout(
+            function() {
+
+              window.location.href =
+                "dashboard.html";
+
+            },
+            300
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Firebase Authentication Error:",
+            error
+          );
+
+
+          // ------------------------------------------------
+          // User-friendly Firebase error messages
+          // ------------------------------------------------
+
+          let errorMessage =
+            "Unable to sign in. Please check your credentials.";
+
+
+          if (
+            error.code ===
+            "auth/invalid-credential"
+          ) {
+
+            errorMessage =
+              "Invalid employee code or password.";
+
+          }
+
+
+          else if (
+            error.code ===
+            "auth/invalid-login-credentials"
+          ) {
+
+            errorMessage =
+              "Invalid employee code or password.";
+
+          }
+
+
+          else if (
+            error.code ===
+            "auth/user-not-found"
+          ) {
+
+            errorMessage =
+              "Employee account not found.";
+
+          }
+
+
+          else if (
+            error.code ===
+            "auth/wrong-password"
+          ) {
+
+            errorMessage =
+              "Invalid employee code or password.";
+
+          }
+
+
+          else if (
+            error.code ===
+            "auth/too-many-requests"
+          ) {
+
+            errorMessage =
+              "Too many login attempts. Please try again later.";
+
+          }
+
+
+          else {
+
+            errorMessage =
+              "Firebase Error: " +
+              error.code;
+
+          }
+
+
+          showMessage(
+            errorMessage,
+            "error"
+          );
+
+
+          loginButton.disabled = false;
+
+          loginButton.textContent =
+            "Sign In";
+
+        }
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>
