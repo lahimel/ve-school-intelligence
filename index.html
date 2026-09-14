@@ -213,5 +213,149 @@
 
     </div>
 
+    <!-- Firebase Authentication -->
+    <script type="module">
+
+        import { initializeApp }
+            from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+
+        import {
+            getAuth,
+            signInWithEmailAndPassword
+        }
+        from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAxzBB6jZbmLXL9eOk0LzpAcadfPmyt70A",
+            authDomain: "ve-school-intelligence.firebaseapp.com",
+            projectId: "ve-school-intelligence",
+            storageBucket: "ve-school-intelligence.firebasestorage.app",
+            messagingSenderId: "313869218934",
+            appId: "1:313869218934:web:0be5b2758244ecd0f9db57"
+        };
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+
+        // Login form
+        const loginForm = document.getElementById("loginForm");
+        const loginButton = document.getElementById("loginButton");
+        const message = document.getElementById("message");
+
+
+        loginForm.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const employeeCode =
+                document.getElementById("employeeCode").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+
+            // Basic validation
+            if (!employeeCode || !password) {
+
+                showMessage(
+                    "Please enter your employee code and password.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // Convert employee code into our Firebase login email
+            const email = employeeCode + "@ve-school.local";
+
+
+            loginButton.disabled = true;
+            loginButton.textContent = "Signing in...";
+
+
+            try {
+
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+                showMessage(
+                    "Login successful. Opening dashboard...",
+                    "success"
+                );
+
+
+                // Open dashboard
+                setTimeout(function() {
+
+                    window.location.href = "dashboard.html";
+
+                }, 800);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                let errorMessage =
+                    "Unable to sign in. Please check your credentials.";
+
+                if (
+                    error.code === "auth/invalid-credential" ||
+                    error.code === "auth/wrong-password" ||
+                    error.code === "auth/user-not-found"
+                ) {
+
+                    errorMessage =
+                        "Invalid employee code or password.";
+
+                }
+
+
+                showMessage(
+                    errorMessage,
+                    "error"
+                );
+
+
+                loginButton.disabled = false;
+                loginButton.textContent = "Sign In";
+
+            }
+
+        });
+
+
+        function showMessage(text, type) {
+
+            message.textContent = text;
+            message.style.display = "block";
+
+
+            if (type === "success") {
+
+                message.style.background = "#dcfce7";
+                message.style.color = "#166534";
+
+            } else {
+
+                message.style.background = "#fee2e2";
+                message.style.color = "#991b1b";
+
+            }
+
+        }
+
+    </script>
+
 </body>
 </html>
