@@ -508,176 +508,190 @@
 
   <script type="module">
 
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
 
-    import {
-      initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-
-
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
-
-
-    // ------------------------------------------------
-    // Firebase Configuration
-    // ------------------------------------------------
-
-    const firebaseConfig = {
-
-      apiKey:
-        "AIzaSyAxzBB6jZbmLXL9eOkL0zpAcadfPmyt70A",
-
-      authDomain:
-        "ve-school-intelligence.firebaseapp.com",
-
-      projectId:
-        "ve-school-intelligence",
-
-      storageBucket:
-        "ve-school-intelligence.firebasestorage.app",
-
-      messagingSenderId:
-        "313869218934",
-
-      appId:
-        "1:313869218934:web:0be5b2758244ecd0f9db57",
-
-      measurementId:
-        "G-WE58LR8Q9F"
-
-    };
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signOut,
+    setPersistence,
+    browserLocalPersistence
+  } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
 
-    // ------------------------------------------------
-    // Initialize Firebase
-    // ------------------------------------------------
+  // ------------------------------------------------
+  // Firebase Configuration
+  // ------------------------------------------------
 
-    const app =
-      initializeApp(firebaseConfig);
-
-    const auth =
-      getAuth(app);
-
-
-    // ------------------------------------------------
-    // Page elements
-    // ------------------------------------------------
-
-    const loadingScreen =
-      document.getElementById("loadingScreen");
-
-    const userEmployee =
-      document.getElementById("userEmployee");
-
-    const logoutButton =
-      document.getElementById("logoutButton");
+  const firebaseConfig = {
+    apiKey: "AIzaSyAxzBB6jZbmLXL9eOkL0zpAcadfPmyt70A",
+    authDomain: "ve-school-intelligence.firebaseapp.com",
+    projectId: "ve-school-intelligence",
+    storageBucket: "ve-school-intelligence.firebasestorage.app",
+    messagingSenderId: "313869218934",
+    appId: "1:313869218934:web:0be5b2758244ecd0f9db57",
+    measurementId: "G-WE58LR8Q9F"
+  };
 
 
-    // ------------------------------------------------
-    // Check authentication state
-    // ------------------------------------------------
+  // ------------------------------------------------
+  // Initialize Firebase
+  // ------------------------------------------------
 
-    onAuthStateChanged(
-      auth,
-      (user) => {
+  const app = initializeApp(firebaseConfig);
 
-
-        if (user) {
-
-          // ------------------------------------------
-          // User is authenticated
-          // ------------------------------------------
-
-          const email =
-            user.email || "";
+  const auth = getAuth(app);
 
 
-          // Firebase email format:
-          // 556@ve-school.local
-          //
-          // Extract only employee code.
+  // ------------------------------------------------
+  // Page elements
+  // ------------------------------------------------
 
-          const employeeCode =
-            email.split("@")[0];
+  const loadingScreen =
+    document.getElementById("loadingScreen");
 
+  const userEmployee =
+    document.getElementById("userEmployee");
 
-          userEmployee.textContent =
-            "Employee: " + employeeCode;
-
-
-          // Show dashboard
-
-          loadingScreen.style.display =
-            "none";
+  const logoutButton =
+    document.getElementById("logoutButton");
 
 
-        }
+  // ------------------------------------------------
+  // Initialize authentication
+  // ------------------------------------------------
 
-        else {
+  async function initializeAuthentication() {
 
-          // ------------------------------------------
-          // User is NOT authenticated
-          // ------------------------------------------
+    try {
 
-          window.location.href =
-            "index.html";
+      // Make sure Firebase uses the same persistent
+      // browser session as the login page.
+
+      await setPersistence(
+        auth,
+        browserLocalPersistence
+      );
+
+
+      // Wait for Firebase to determine the current
+      // authentication state.
+
+      onAuthStateChanged(
+        auth,
+        (user) => {
+
+          if (user) {
+
+            // ----------------------------------------
+            // Authenticated user
+            // ----------------------------------------
+
+            const email =
+              user.email || "";
+
+            const employeeCode =
+              email.split("@")[0];
+
+            userEmployee.textContent =
+              "Employee: " + employeeCode;
+
+
+            // Authentication confirmed.
+            // Now reveal the dashboard.
+
+            loadingScreen.style.display =
+              "none";
+
+          }
+
+          else {
+
+            // ----------------------------------------
+            // No authenticated user
+            // ----------------------------------------
+
+            window.location.replace(
+              "index.html"
+            );
+
+          }
 
         }
+      );
+
+    }
+
+    catch (error) {
+
+      console.error(
+        "Firebase authentication initialization error:",
+        error
+      );
+
+      // If Firebase itself cannot initialize,
+      // return to login rather than leaving the
+      // user stuck on the loading screen.
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+  }
+
+
+  // Start authentication check
+
+  initializeAuthentication();
+
+
+  // ------------------------------------------------
+  // Logout
+  // ------------------------------------------------
+
+  logoutButton.addEventListener(
+    "click",
+    async () => {
+
+      logoutButton.disabled = true;
+
+      logoutButton.textContent =
+        "Logging out...";
+
+
+      try {
+
+        await signOut(auth);
+
+        window.location.replace(
+          "index.html"
+        );
 
       }
-    );
 
+      catch (error) {
 
-    // ------------------------------------------------
-    // Logout
-    // ------------------------------------------------
-
-    logoutButton.addEventListener(
-      "click",
-      async () => {
-
+        console.error(
+          "Logout error:",
+          error
+        );
 
         logoutButton.disabled =
-          true;
+          false;
 
         logoutButton.textContent =
-          "Logging out...";
-
-
-        try {
-
-          await signOut(auth);
-
-          window.location.href =
-            "index.html";
-
-
-        }
-
-        catch (error) {
-
-          console.error(
-            "Logout error:",
-            error
-          );
-
-
-          logoutButton.disabled =
-            false;
-
-          logoutButton.textContent =
-            "Logout";
-
-        }
+          "Logout";
 
       }
-    );
 
+    }
+  );
 
-  </script>
+</script>
 
 
 </body>
