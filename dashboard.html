@@ -1,225 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>VE School Intelligence - Dashboard</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    VE School Intelligence - Dashboard
+  </title>
+
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       background: #f4f7fb;
+
       color: #1f2937;
+
     }
 
-    /* -----------------------------------------
-       HEADER
-    ----------------------------------------- */
 
     header {
+
       background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 18px 32px;
+
+      border-bottom:
+        1px solid #e5e7eb;
+
+      padding:
+        18px 32px;
 
       display: flex;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
+
       align-items: center;
+
     }
+
 
     .brand {
+
       display: flex;
+
       align-items: center;
+
       gap: 12px;
+
     }
 
+
     .logo {
+
       width: 42px;
+
       height: 42px;
+
       border-radius: 10px;
 
       background: #2563eb;
+
       color: #ffffff;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       font-size: 18px;
+
       font-weight: 700;
+
     }
 
+
     .brand-text h1 {
+
       margin: 0;
 
       font-size: 20px;
-      line-height: 1.2;
 
       color: #111827;
+
     }
+
 
     .brand-text p {
-      margin: 4px 0 0;
+
+      margin:
+        4px 0 0;
 
       font-size: 12px;
+
       color: #6b7280;
+
     }
 
-
-    /* -----------------------------------------
-       USER AREA
-    ----------------------------------------- */
 
     .user-area {
+
       display: flex;
+
       align-items: center;
+
       gap: 16px;
+
     }
+
 
     #userEmployee {
+
       font-size: 14px;
+
       color: #4b5563;
+
     }
 
+
     #logoutButton {
+
       border: none;
 
       background: #dc2626;
+
       color: #ffffff;
 
-      padding: 9px 16px;
+      padding:
+        9px 16px;
 
       border-radius: 7px;
 
       cursor: pointer;
 
       font-size: 14px;
+
       font-weight: 600;
 
-      transition: background 0.2s;
     }
+
 
     #logoutButton:hover {
+
       background: #b91c1c;
+
     }
 
-    #logoutButton:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
-
-    /* -----------------------------------------
-       MAIN CONTENT
-    ----------------------------------------- */
 
     main {
+
       max-width: 1400px;
 
-      margin: 0 auto;
+      margin:
+        0 auto;
 
-      padding: 40px 35px;
+      padding:
+        40px 35px;
+
     }
 
-
-    /* -----------------------------------------
-       WELCOME SECTION
-    ----------------------------------------- */
 
     .welcome {
+
       margin-bottom: 30px;
+
     }
 
+
     .welcome h2 {
-      margin: 0 0 8px;
+
+      margin:
+        0 0 8px;
 
       font-size: 30px;
 
       color: #111827;
+
     }
 
+
     .welcome p {
+
       margin: 0;
 
       color: #64748b;
 
       font-size: 16px;
+
     }
 
 
-    /* -----------------------------------------
-       KPI CARDS
-    ----------------------------------------- */
-
     .kpi-grid {
+
       display: grid;
 
       grid-template-columns:
         repeat(4, 1fr);
 
       gap: 22px;
+
     }
 
+
     .kpi-card {
+
       background: #ffffff;
 
-      border: 1px solid #e5e7eb;
+      border:
+        1px solid #e5e7eb;
 
       border-radius: 12px;
 
       padding: 25px;
 
       box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.04);
+        0 2px 8px
+        rgba(0, 0, 0, 0.04);
+
     }
 
+
     .kpi-label {
+
       color: #64748b;
 
       font-size: 14px;
 
       margin-bottom: 10px;
+
     }
 
+
     .kpi-value {
+
       color: #111827;
 
       font-size: 32px;
 
       font-weight: 700;
+
     }
 
 
-    /* -----------------------------------------
-       COMING SOON SECTION
-    ----------------------------------------- */
-
     .development-note {
+
       margin-top: 30px;
 
       background: #ffffff;
 
-      border: 1px solid #e5e7eb;
+      border:
+        1px solid #e5e7eb;
 
       border-radius: 12px;
 
       padding: 25px;
+
     }
 
+
     .development-note h3 {
-      margin: 0 0 8px;
+
+      margin:
+        0 0 8px;
 
       color: #111827;
 
       font-size: 18px;
+
     }
 
+
     .development-note p {
+
       margin: 0;
 
       color: #64748b;
@@ -227,14 +298,12 @@
       font-size: 14px;
 
       line-height: 1.6;
+
     }
 
 
-    /* -----------------------------------------
-       LOADING SCREEN
-    ----------------------------------------- */
-
     #loadingScreen {
+
       position: fixed;
 
       inset: 0;
@@ -244,52 +313,67 @@
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
       z-index: 9999;
+
     }
+
 
     .loading-box {
+
       text-align: center;
+
     }
 
+
     .loading-logo {
+
       width: 55px;
+
       height: 55px;
 
-      margin: 0 auto 15px;
+      margin:
+        0 auto 15px;
 
       border-radius: 12px;
 
       background: #2563eb;
+
       color: #ffffff;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       font-size: 22px;
+
       font-weight: 700;
+
     }
 
+
     .loading-box p {
+
       margin: 0;
 
       color: #64748b;
 
       font-size: 14px;
+
     }
 
-
-    /* -----------------------------------------
-       MOBILE
-    ----------------------------------------- */
 
     @media (max-width: 900px) {
 
       .kpi-grid {
+
         grid-template-columns:
           repeat(2, 1fr);
+
       }
 
     }
@@ -298,56 +382,70 @@
     @media (max-width: 600px) {
 
       header {
-        padding: 15px 18px;
+
+        padding:
+          15px 18px;
+
       }
+
 
       .brand-text p {
+
         display: none;
+
       }
 
-      .brand-text h1 {
-        font-size: 17px;
-      }
 
       #userEmployee {
+
         display: none;
+
       }
+
 
       main {
-        padding: 25px 18px;
+
+        padding:
+          25px 18px;
+
       }
+
 
       .kpi-grid {
-        grid-template-columns: 1fr;
-      }
 
-      .welcome h2 {
-        font-size: 26px;
+        grid-template-columns:
+          1fr;
+
       }
 
     }
 
   </style>
+
 </head>
 
 
 <body>
 
 
-  <!-- -----------------------------------------
-       AUTHENTICATION LOADING SCREEN
-  ------------------------------------------ -->
+  <!-- =============================================
+       LOADING SCREEN
+  ============================================== -->
 
   <div id="loadingScreen">
 
     <div class="loading-box">
 
       <div class="loading-logo">
+
         VE
+
       </div>
 
       <p>
+
         Verifying your session...
+
       </p>
 
     </div>
@@ -355,26 +453,34 @@
   </div>
 
 
-  <!-- -----------------------------------------
+  <!-- =============================================
        HEADER
-  ------------------------------------------ -->
+  ============================================== -->
 
   <header>
 
     <div class="brand">
 
       <div class="logo">
+
         VE
+
       </div>
+
 
       <div class="brand-text">
 
         <h1>
+
           VE School Intelligence
+
         </h1>
 
+
         <p>
+
           Vocational Education School Intelligence Portal
+
         </p>
 
       </div>
@@ -385,11 +491,16 @@
     <div class="user-area">
 
       <span id="userEmployee">
+
         Employee
+
       </span>
 
+
       <button id="logoutButton">
+
         Logout
+
       </button>
 
     </div>
@@ -397,9 +508,9 @@
   </header>
 
 
-  <!-- -----------------------------------------
-       MAIN DASHBOARD
-  ------------------------------------------ -->
+  <!-- =============================================
+       DASHBOARD
+  ============================================== -->
 
   <main>
 
@@ -407,19 +518,21 @@
     <section class="welcome">
 
       <h2>
+
         Dashboard
+
       </h2>
 
+
       <p>
-        Welcome to the Vocational Education School Intelligence Portal.
+
+        Welcome to the Vocational Education
+        School Intelligence Portal.
+
       </p>
 
     </section>
 
-
-    <!-- -----------------------------------------
-         KPI CARDS
-    ------------------------------------------ -->
 
     <section class="kpi-grid">
 
@@ -427,11 +540,16 @@
       <div class="kpi-card">
 
         <div class="kpi-label">
+
           States
+
         </div>
 
+
         <div class="kpi-value">
+
           15
+
         </div>
 
       </div>
@@ -440,11 +558,16 @@
       <div class="kpi-card">
 
         <div class="kpi-label">
+
           Schools
+
         </div>
 
+
         <div class="kpi-value">
+
           22,350
+
         </div>
 
       </div>
@@ -453,11 +576,16 @@
       <div class="kpi-card">
 
         <div class="kpi-label">
+
           Sector Units
+
         </div>
 
+
         <div class="kpi-value">
+
           37,528
+
         </div>
 
       </div>
@@ -466,11 +594,16 @@
       <div class="kpi-card">
 
         <div class="kpi-label">
+
           Districts
+
         </div>
 
+
         <div class="kpi-value">
+
           441
+
         </div>
 
       </div>
@@ -479,21 +612,23 @@
     </section>
 
 
-    <!-- -----------------------------------------
-         DEVELOPMENT NOTE
-    ------------------------------------------ -->
-
     <section class="development-note">
 
       <h3>
+
         VE School Intelligence
+
       </h3>
 
+
       <p>
-        The intelligence dashboard is currently being developed.
-        School-level data, state and district analysis, sector
-        insights, interactive maps, school search and detailed
+
+        The intelligence dashboard is currently
+        being developed. School-level data, state
+        and district analysis, sector insights,
+        interactive maps, school search and detailed
         school profiles will be available here.
+
       </p>
 
     </section>
@@ -502,170 +637,198 @@
   </main>
 
 
-  <!-- -----------------------------------------
+  <!-- =============================================
        FIREBASE AUTHENTICATION
-  ------------------------------------------ -->
+  ============================================== -->
 
   <script type="module">
 
-  import {
-    initializeApp
-  } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
 
-  import {
-    getAuth,
-    onAuthStateChanged,
-    signOut,
-    setPersistence,
-    browserLocalPersistence
-  } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+    import {
 
-
-  // ------------------------------------------------
-  // Firebase Configuration
-  // ------------------------------------------------
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAxzBB6jZbmLXL9eOkL0zpAcadfPmyt70A",
-    authDomain: "ve-school-intelligence.firebaseapp.com",
-    projectId: "ve-school-intelligence",
-    storageBucket: "ve-school-intelligence.firebasestorage.app",
-    messagingSenderId: "313869218934",
-    appId: "1:313869218934:web:0be5b2758244ecd0f9db57",
-    measurementId: "G-WE58LR8Q9F"
-  };
-
-
-  // ------------------------------------------------
-  // Initialize Firebase
-  // ------------------------------------------------
-
-  const app = initializeApp(firebaseConfig);
-
-  const auth = getAuth(app);
-
-
-  // ------------------------------------------------
-  // Page elements
-  // ------------------------------------------------
-
-  const loadingScreen =
-    document.getElementById("loadingScreen");
-
-  const userEmployee =
-    document.getElementById("userEmployee");
-
-  const logoutButton =
-    document.getElementById("logoutButton");
-
-
-  // ------------------------------------------------
-  // Initialize authentication
-  // ------------------------------------------------
-
-  async function initializeAuthentication() {
-
-    try {
-
-      // Make sure Firebase uses the same persistent
-      // browser session as the login page.
-
-      await setPersistence(
-        auth,
-        browserLocalPersistence
-      );
-
-
-      // Wait for Firebase to determine the current
-      // authentication state.
-
-      onAuthStateChanged(
-        auth,
-        (user) => {
-
-          if (user) {
-
-            // ----------------------------------------
-            // Authenticated user
-            // ----------------------------------------
-
-            const email =
-              user.email || "";
-
-            const employeeCode =
-              email.split("@")[0];
-
-            userEmployee.textContent =
-              "Employee: " + employeeCode;
-
-
-            // Authentication confirmed.
-            // Now reveal the dashboard.
-
-            loadingScreen.style.display =
-              "none";
-
-          }
-
-          else {
-
-            // ----------------------------------------
-            // No authenticated user
-            // ----------------------------------------
-
-            window.location.replace(
-              "index.html"
-            );
-
-          }
-
-        }
-      );
+      initializeApp
 
     }
 
-    catch (error) {
+    from
+      "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
 
-      console.error(
-        "Firebase authentication initialization error:",
-        error
-      );
 
-      // If Firebase itself cannot initialize,
-      // return to login rather than leaving the
-      // user stuck on the loading screen.
+    import {
 
-      window.location.replace(
-        "index.html"
-      );
+      initializeAuth,
+
+      indexedDBLocalPersistence,
+
+      browserLocalPersistence,
+
+      browserSessionPersistence,
+
+      onAuthStateChanged,
+
+      signOut
 
     }
 
-  }
+    from
+      "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
 
-  // Start authentication check
+    // =================================================
+    // FIREBASE CONFIGURATION
+    // =================================================
 
-  initializeAuthentication();
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyAxzBB6jZbmLXL9eOkL0zpAcadfPmyt70A",
+
+      authDomain:
+        "ve-school-intelligence.firebaseapp.com",
+
+      projectId:
+        "ve-school-intelligence",
+
+      storageBucket:
+        "ve-school-intelligence.firebasestorage.app",
+
+      messagingSenderId:
+        "313869218934",
+
+      appId:
+        "1:313869218934:web:0be5b2758244ecd0f9db57",
+
+      measurementId:
+        "G-WE58LR8Q9F"
+
+    };
 
 
-  // ------------------------------------------------
-  // Logout
-  // ------------------------------------------------
+    // =================================================
+    // INITIALIZE FIREBASE
+    // =================================================
 
-  logoutButton.addEventListener(
-    "click",
-    async () => {
+    const app =
+      initializeApp(firebaseConfig);
 
-      logoutButton.disabled = true;
 
-      logoutButton.textContent =
-        "Logging out...";
+    // =================================================
+    // IDENTICAL AUTH INITIALIZATION
+    // AS index.html
+    // =================================================
 
+    const auth =
+      initializeAuth(app, {
+
+        persistence: [
+
+          indexedDBLocalPersistence,
+
+          browserLocalPersistence,
+
+          browserSessionPersistence
+
+        ]
+
+      });
+
+
+    // =================================================
+    // PAGE ELEMENTS
+    // =================================================
+
+    const loadingScreen =
+      document.getElementById(
+        "loadingScreen"
+      );
+
+
+    const userEmployee =
+      document.getElementById(
+        "userEmployee"
+      );
+
+
+    const logoutButton =
+      document.getElementById(
+        "logoutButton"
+      );
+
+
+    // =================================================
+    // AUTHENTICATION CHECK
+    // =================================================
+
+    async function verifyAuthentication() {
 
       try {
 
-        await signOut(auth);
+
+        // Wait until Firebase has completely
+        // restored the saved authentication state.
+
+        await auth.authStateReady();
+
+
+        const user =
+          auth.currentUser;
+
+
+        console.log(
+          "Dashboard Firebase user:",
+          user
+            ? user.email
+            : null
+        );
+
+
+        if (!user) {
+
+          console.warn(
+            "No authenticated Firebase user found."
+          );
+
+
+          window.location.replace(
+            "index.html"
+          );
+
+
+          return;
+
+        }
+
+
+        // ---------------------------------------------
+        // Authenticated
+        // ---------------------------------------------
+
+        const email =
+          user.email || "";
+
+
+        const employeeCode =
+          email.split("@")[0];
+
+
+        userEmployee.textContent =
+          "Employee: " +
+          employeeCode;
+
+
+        loadingScreen.style.display =
+          "none";
+
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Dashboard authentication error:",
+          error
+        );
+
 
         window.location.replace(
           "index.html"
@@ -673,26 +836,70 @@
 
       }
 
-      catch (error) {
+    }
 
-        console.error(
-          "Logout error:",
-          error
-        );
+
+    verifyAuthentication();
+
+
+    // =================================================
+    // LOGOUT
+    // =================================================
+
+    logoutButton.addEventListener(
+
+      "click",
+
+      async function() {
+
 
         logoutButton.disabled =
-          false;
+          true;
+
 
         logoutButton.textContent =
-          "Logout";
+          "Logging out...";
+
+
+        try {
+
+
+          await signOut(auth);
+
+
+          window.location.replace(
+            "index.html"
+          );
+
+
+        }
+
+        catch (error) {
+
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+
+          logoutButton.disabled =
+            false;
+
+
+          logoutButton.textContent =
+            "Logout";
+
+        }
 
       }
 
-    }
-  );
+    );
 
-</script>
+
+  </script>
 
 
 </body>
+
 </html>
