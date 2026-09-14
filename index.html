@@ -302,36 +302,19 @@
                 }, 800);
 
 
-            } catch (error) {
+                    } catch (error) {
 
-                console.error(error);
+            console.error("Firebase Authentication Error:", error);
 
-                let errorMessage =
-                    "Unable to sign in. Please check your credentials.";
+            showMessage(
+                "Firebase Error: " + error.code,
+                "error"
+            );
 
-                if (
-                    error.code === "auth/invalid-credential" ||
-                    error.code === "auth/wrong-password" ||
-                    error.code === "auth/user-not-found"
-                ) {
+            loginButton.disabled = false;
+            loginButton.textContent = "Sign In";
 
-                    errorMessage =
-                        "Invalid employee code or password.";
-
-                }
-
-
-                showMessage(
-                    errorMessage,
-                    "error"
-                );
-
-
-                loginButton.disabled = false;
-                loginButton.textContent = "Sign In";
-
-            }
-
+        }
         });
 
 
