@@ -1,202 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>VE School Intelligence</title>
 
+
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #eef4ff 0%, #f8fafc 100%);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        linear-gradient(
+          135deg,
+          #eef4ff 0%,
+          #f8fafc 100%
+        );
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       color: #1f2937;
+
     }
+
 
     .login-container {
+
       width: 100%;
+
       max-width: 480px;
+
       padding: 24px;
+
     }
+
 
     .login-card {
+
       background: #ffffff;
+
       border-radius: 18px;
+
       padding: 42px 48px;
-      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.10);
-      border: 1px solid #e5e7eb;
+
+      box-shadow:
+        0 12px 40px
+        rgba(15, 23, 42, 0.10);
+
+      border:
+        1px solid #e5e7eb;
+
       text-align: center;
+
     }
+
 
     .logo {
+
       width: 80px;
+
       height: 80px;
-      margin: 0 auto 24px;
+
+      margin:
+        0 auto 24px;
+
       border-radius: 18px;
+
       background: #2563eb;
+
       color: #ffffff;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       font-size: 32px;
+
       font-weight: 700;
-      letter-spacing: -1px;
+
     }
+
 
     h1 {
+
       margin: 0;
+
       color: #111827;
+
       font-size: 30px;
+
       line-height: 1.2;
+
     }
+
 
     .subtitle {
-      margin: 12px auto 36px;
+
+      margin:
+        12px auto 36px;
+
       max-width: 300px;
+
       color: #64748b;
+
       font-size: 16px;
+
       line-height: 1.5;
+
     }
+
 
     .form-group {
+
       text-align: left;
+
       margin-bottom: 20px;
+
     }
+
 
     label {
+
       display: block;
+
       margin-bottom: 8px;
+
       color: #1f2937;
+
       font-size: 15px;
+
       font-weight: 600;
+
     }
+
 
     input {
+
       width: 100%;
+
       padding: 15px 16px;
-      border: 1px solid #cbd5e1;
+
+      border:
+        1px solid #cbd5e1;
+
       border-radius: 10px;
+
       background: #ffffff;
+
       color: #111827;
+
       font-size: 16px;
+
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+
     }
+
 
     input:focus {
+
       border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.12);
+
     }
 
-    input::placeholder {
-      color: #94a3b8;
-    }
 
     #loginButton {
+
       width: 100%;
+
       margin-top: 8px;
+
       padding: 15px;
+
       border: none;
+
       border-radius: 10px;
+
       background: #2563eb;
+
       color: #ffffff;
+
       font-size: 16px;
+
       font-weight: 700;
+
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
+
     }
+
 
     #loginButton:hover:not(:disabled) {
+
       background: #1d4ed8;
+
     }
 
-    #loginButton:active:not(:disabled) {
-      transform: translateY(1px);
-    }
 
     #loginButton:disabled {
+
       opacity: 0.7;
+
       cursor: not-allowed;
+
     }
+
 
     #message {
+
       min-height: 24px;
+
       margin-top: 18px;
+
       font-size: 14px;
+
       line-height: 1.4;
+
     }
+
 
     #message.success {
+
       color: #15803d;
+
     }
+
 
     #message.error {
+
       color: #dc2626;
+
     }
+
 
     .security-note {
+
       margin-top: 28px;
+
       color: #64748b;
+
       font-size: 14px;
+
     }
+
 
     .footer {
+
       margin-top: 34px;
+
       color: #94a3b8;
+
       font-size: 13px;
+
     }
 
+
     @media (max-width: 520px) {
-      .login-container {
-        padding: 16px;
-      }
 
       .login-card {
-        padding: 34px 24px;
+
+        padding:
+          34px 24px;
+
       }
 
       h1 {
+
         font-size: 26px;
+
       }
+
     }
+
   </style>
+
 </head>
 
+
 <body>
+
 
   <div class="login-container">
 
     <div class="login-card">
 
+
       <div class="logo">
+
         VE
+
       </div>
 
+
       <h1>
+
         VE School Intelligence
+
       </h1>
 
+
       <div class="subtitle">
+
         Vocational Education<br>
+
         School Intelligence Portal
+
       </div>
 
 
       <form id="loginForm">
 
+
         <div class="form-group">
+
           <label for="employeeCode">
+
             Employee Code
+
           </label>
+
 
           <input
             type="text"
@@ -205,13 +356,18 @@
             autocomplete="username"
             required
           >
+
         </div>
 
 
         <div class="form-group">
+
           <label for="password">
+
             Password
+
           </label>
+
 
           <input
             type="password"
@@ -220,6 +376,7 @@
             autocomplete="current-password"
             required
           >
+
         </div>
 
 
@@ -227,8 +384,11 @@
           type="submit"
           id="loginButton"
         >
+
           Sign In
+
         </button>
+
 
       </form>
 
@@ -237,111 +397,256 @@
 
 
       <div class="security-note">
+
         🔒 Authorized employees only
+
       </div>
 
 
       <div class="footer">
+
         Vocational Education Programme
+
       </div>
+
 
     </div>
 
   </div>
 
 
-  <!-- Firebase Authentication -->
-
   <script type="module">
 
+
     import {
+
       initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+
+    }
+
+    from
+      "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+
 
     import {
-      getAuth,
+
+      initializeAuth,
+
+      indexedDBLocalPersistence,
+
+      browserLocalPersistence,
+
+      browserSessionPersistence,
+
       signInWithEmailAndPassword,
-      setPersistence,
-      browserLocalPersistence
-    } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+      onAuthStateChanged,
+
+      signOut
+
+    }
+
+    from
+      "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
 
-    // --------------------------------------------------
-    // Firebase Configuration
-    // --------------------------------------------------
+    // =================================================
+    // FIREBASE CONFIGURATION
+    // =================================================
 
     const firebaseConfig = {
-      apiKey: "AIzaSyAxzBB6jZbmLXL9eOkOLzpAcadfPmyt70A",
-  authDomain: "ve-school-intelligence.firebaseapp.com",
-  projectId: "ve-school-intelligence",
-  storageBucket: "ve-school-intelligence.firebasestorage.app",
-  messagingSenderId: "313869218934",
-  appId: "1:313869218934:web:0be5b2758244ecd0f9db57",
-  measurementId: "G-WE58LR8Q9F"
+
+      apiKey:
+        "AIzaSyAxzBB6jZbmLXL9eOkOLzpAcadfPmyt70A",
+
+      authDomain:
+        "ve-school-intelligence.firebaseapp.com",
+
+      projectId:
+        "ve-school-intelligence",
+
+      storageBucket:
+        "ve-school-intelligence.firebasestorage.app",
+
+      messagingSenderId:
+        "313869218934",
+
+      appId:
+        "1:313869218934:web:0be5b2758244ecd0f9db57",
+
+      measurementId:
+        "G-WE58LR8Q9F"
+
     };
 
 
-    // --------------------------------------------------
-    // Initialize Firebase
-    // --------------------------------------------------
+    // =================================================
+    // INITIALIZE FIREBASE
+    // =================================================
 
-    const app = initializeApp(firebaseConfig);
+    const app =
+      initializeApp(firebaseConfig);
 
-    const auth = getAuth(app);
+
+    // =================================================
+    // EXPLICIT AUTH INITIALIZATION
+    //
+    // Firebase will use the first persistence
+    // mechanism supported by the browser.
+    //
+    // IndexedDB is preferred.
+    // localStorage is the fallback.
+    // sessionStorage is the final fallback.
+    // =================================================
+
+    const auth =
+      initializeAuth(app, {
+
+        persistence: [
+
+          indexedDBLocalPersistence,
+
+          browserLocalPersistence,
+
+          browserSessionPersistence
+
+        ]
+
+      });
 
 
-    // --------------------------------------------------
-    // Get page elements
-    // --------------------------------------------------
+    // =================================================
+    // PAGE ELEMENTS
+    // =================================================
 
     const loginForm =
-      document.getElementById("loginForm");
+      document.getElementById(
+        "loginForm"
+      );
+
 
     const employeeCodeInput =
-      document.getElementById("employeeCode");
+      document.getElementById(
+        "employeeCode"
+      );
+
 
     const passwordInput =
-      document.getElementById("password");
+      document.getElementById(
+        "password"
+      );
+
 
     const loginButton =
-      document.getElementById("loginButton");
+      document.getElementById(
+        "loginButton"
+      );
+
 
     const message =
-      document.getElementById("message");
+      document.getElementById(
+        "message"
+      );
 
 
-    // --------------------------------------------------
-    // Display login messages
-    // --------------------------------------------------
+    // =================================================
+    // MESSAGE FUNCTION
+    // =================================================
 
-    function showMessage(text, type) {
+    function showMessage(
+      text,
+      type
+    ) {
 
-      message.textContent = text;
+      message.textContent =
+        text;
 
-      message.className = type || "";
+      message.className =
+        type || "";
 
     }
 
 
-    // --------------------------------------------------
-    // Login
-    // --------------------------------------------------
+    // =================================================
+    // CHECK EXISTING SESSION
+    //
+    // IMPORTANT:
+    // We wait until Firebase has completely finished
+    // restoring the Auth state.
+    // =================================================
+
+    async function checkExistingSession() {
+
+      try {
+
+        await auth.authStateReady();
+
+
+        const user =
+          auth.currentUser;
+
+
+        if (user) {
+
+          console.log(
+            "Existing Firebase session found:",
+            user.email
+          );
+
+
+          // User is already authenticated.
+
+          window.location.replace(
+            "dashboard.html"
+          );
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Auth initialization error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    checkExistingSession();
+
+
+    // =================================================
+    // LOGIN
+    // =================================================
 
     loginForm.addEventListener(
+
       "submit",
+
       async function(event) {
+
 
         event.preventDefault();
 
 
         const employeeCode =
-          employeeCodeInput.value.trim();
+          employeeCodeInput
+            .value
+            .trim();
+
 
         const password =
           passwordInput.value;
 
 
-        if (!employeeCode || !password) {
+        if (
+          !employeeCode ||
+          !password
+        ) {
 
           showMessage(
             "Please enter your employee code and password.",
@@ -353,71 +658,88 @@
         }
 
 
-        // Disable button while authentication is running
+        loginButton.disabled =
+          true;
 
-        loginButton.disabled = true;
 
-        loginButton.textContent = "Signing in...";
+        loginButton.textContent =
+          "Signing in...";
 
-        showMessage("", "");
+
+        showMessage(
+          "",
+          ""
+        );
 
 
         try {
 
-          // ------------------------------------------------
-          // Explicitly persist authentication locally
-          // ------------------------------------------------
-
-          await setPersistence(
-            auth,
-            browserLocalPersistence
-          );
-
-
-          // ------------------------------------------------
-          // Convert employee code into Firebase email
-          // ------------------------------------------------
 
           const email =
-            employeeCode + "@ve-school.local";
+            employeeCode +
+            "@ve-school.local";
 
 
-          // ------------------------------------------------
-          // Authenticate with Firebase
-          // ------------------------------------------------
+          // -------------------------------------------
+          // Firebase login
+          // -------------------------------------------
 
-          await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
+          const credential =
+            await signInWithEmailAndPassword(
+
+              auth,
+
+              email,
+
+              password
+
+            );
+
+
+          console.log(
+            "Firebase login successful:",
+            credential.user.email
           );
 
 
-          // ------------------------------------------------
-          // Authentication successful
-          // ------------------------------------------------
+          // -------------------------------------------
+          // Make absolutely sure the Auth state has
+          // settled before leaving this page.
+          // -------------------------------------------
+
+          await auth.authStateReady();
+
+
+          console.log(
+            "Firebase current user:",
+            auth.currentUser
+              ? auth.currentUser.email
+              : null
+          );
+
 
           showMessage(
+
             "Login successful. Redirecting...",
+
             "success"
+
           );
 
 
-          // Give Firebase a moment to complete persistence
-          // before navigating to the dashboard.
+          // -------------------------------------------
+          // Navigate to dashboard
+          // -------------------------------------------
 
-          setTimeout(
-            function() {
-
-              window.location.href =
-                "dashboard.html";
-
-            },
-            300
+          window.location.replace(
+            "dashboard.html"
           );
 
 
-        } catch (error) {
+        }
+
+        catch (error) {
+
 
           console.error(
             "Firebase Authentication Error:",
@@ -425,17 +747,15 @@
           );
 
 
-          // ------------------------------------------------
-          // User-friendly Firebase error messages
-          // ------------------------------------------------
-
           let errorMessage =
-            "Unable to sign in. Please check your credentials.";
+            "Unable to sign in.";
 
 
           if (
+
             error.code ===
-            "auth/invalid-credential"
+              "auth/invalid-credential"
+
           ) {
 
             errorMessage =
@@ -445,8 +765,10 @@
 
 
           else if (
+
             error.code ===
-            "auth/invalid-login-credentials"
+              "auth/invalid-login-credentials"
+
           ) {
 
             errorMessage =
@@ -456,8 +778,10 @@
 
 
           else if (
+
             error.code ===
-            "auth/user-not-found"
+              "auth/user-not-found"
+
           ) {
 
             errorMessage =
@@ -467,8 +791,10 @@
 
 
           else if (
+
             error.code ===
-            "auth/wrong-password"
+              "auth/wrong-password"
+
           ) {
 
             errorMessage =
@@ -478,12 +804,14 @@
 
 
           else if (
+
             error.code ===
-            "auth/too-many-requests"
+              "auth/web-storage-unsupported"
+
           ) {
 
             errorMessage =
-              "Too many login attempts. Please try again later.";
+              "This browser does not allow Firebase authentication storage.";
 
           }
 
@@ -503,17 +831,24 @@
           );
 
 
-          loginButton.disabled = false;
+          loginButton.disabled =
+            false;
+
 
           loginButton.textContent =
             "Sign In";
 
+
         }
 
       }
+
     );
+
 
   </script>
 
+
 </body>
+
 </html>
